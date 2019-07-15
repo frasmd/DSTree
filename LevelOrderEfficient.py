@@ -38,20 +38,41 @@ def NodesAtALevel(node, i):
         NodesAtALevel(node.left, i-1)
         NodesAtALevel(node.right, i-1)
 
-def levelOrderEfficient(node):
-    q=[]
-    q.append(node)
+def levelOrderEfficientLineByLine(node):
     if node==None:
         return
-    
+    q=[]
+    q.append(node)
+    q.append(None)
+    while len(q) > 1:
+        out_node=q.pop(0)
+        if out_node == None:
+            q.append(None)
+            print("$", end=' ')
+        else:
+            if out_node.left != None:
+                q.append(out_node.left)
+            if out_node.right != None:
+                q.append(out_node.right)
+            
+            print(out_node.key, end=' ')
+    print("$", end=' ')
+
+def ReverselevelOrderEfficient(node):
+    if node==None:
+        return
+    q=[]
+    result=[]
+    q.append(node)
     while len(q):
         out_node=q.pop(0)
-        print(out_node.key)
-
+        result.append(out_node.key)
         if out_node.left != None:
             q.append(out_node.left)
         if out_node.right != None:
             q.append(out_node.right)
+    while(len(result)):
+        print(result.pop(), end=' ')
 
 pnode = Node(1) 
 pnode.left = Node(2) 
@@ -59,10 +80,5 @@ pnode.right = Node(3)
 pnode.left.left = Node(4) 
 pnode.left.right = Node(5) 
 
-level_start=time.time()
-leverordertraversal(pnode)
-print(time.time()-level_start)
+ReverselevelOrderEfficient(pnode)
 
-levele_start=time.time()
-levelOrderEfficient(pnode)
-print(time.time()-levele_start)
