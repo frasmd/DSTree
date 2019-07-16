@@ -64,13 +64,20 @@ def deleteHalfNodes(pnode):
     return pnode
 
 
+def checkFullTree(node):
+    if node==None:
+        return True ## 0 nodes is a binary full tree
+    if (node.left is not None and node.right is None) or (node.left is None and  node.right is not None):
+        return False
+    
+    return checkFullTree(node.left) and checkFullTree(node.right) ### Both subtrees should be full trees
 
 
 node=Node(1)
 node.left=Node(2)
 node.right=Node(3)
 node.left.left=Node(4)
+node.left.right=Node(6)
+node.right.left=Node(7)
 node.right.right=Node(5)
-getnode=deleteHalfNodes(node)
-print("After deleting half nodes")
-node.printTree(getnode)
+print(checkFullTree(node))
