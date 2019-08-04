@@ -56,7 +56,7 @@ def levelOrderEfficientLineByLine(node):
                 q.append(out_node.right)
             
             print(out_node.key, end=' ')
-    print("$", end=' ')
+    print("$", end=' ) //change was here
 
 def ReverselevelOrderEfficient(node):
     if node==None:
